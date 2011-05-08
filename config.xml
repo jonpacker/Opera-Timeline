@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://timeline.operaf.tw" defaultlocale="en" viewmodes="minimized" version="1.0">
+	<name short="Timeline">Timeline</name>
+	<description>Shows your most recent tweets in a speed dial tile.</description>
+	<author href="http://www.jonpacker.com" email="contact@jonpacker.com">Jon Packer</author>
+	<icon src="images/icon.png"/>
+	<preference name="accessToken" value="none"/>
+  <preference name="updateInterval" value="10"/>
+	<access origin="*" />
+  <feature name="opera:speeddial" required="true">
+      <param name="url" value="http://www.twitter.com"/>
+  </feature> 
+</widget>

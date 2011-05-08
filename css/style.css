@@ -1,0 +1,97 @@
+html, body {
+	padding: 0px;
+	margin: 0px;
+	border-radius: 4px;
+	font-family: Cabin;
+}
+
+.error {
+	color: red;
+	padding: 0.5em 0.65em;
+	font-family: Rokkitt;
+	font-weight:bold;
+	line-height: 0.9em;
+	margin-top: 0px;
+	font-size: 2em;
+	margin-bottom: 0em;
+}
+
+output {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 5;
+	top: 0px;
+	left: 0px;
+	overflow: hidden;
+	border-radius: 8px;
+}
+
+tweet {
+	width: 100%;
+	height: 52px;
+	display: block;
+	position: relative;
+/*	background-color: rgb(220,220,220);*/
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABtQTFRF3d3k3t7l3Nzj39/m29vi4ODn2trh2dng4eHoTT6WAQAAA8NJREFUGBkFwTlz2zgYANAPB5WUuCinBECITgmAFNMSFKVsyUNxtqQOJymVcWZrO2tn9mfveyD9PCL0QVABKF/pKI8zX0raaxhaVPTruyKTn1Z9axS6jVNg82oHoXB8LUt9453Im8p3kbsupMCgKs/weTI2YdJ6rDYpxgK/nN4JsOk2bC1UKR/Mhr5Yu14jPBc1Bife8c3BSV5WpgpcrYU2zfGrp/DQDKHTyvp20DgPcW4e9mBcq8G/uE2YlrTWWHenZyzKrLl39m2Eu5RR7csWJUjYzTaJKi4kYQaCoAL2hjw2Ki8qv7UZP1s1UwvSrgyAbpEkWVhM2KKuxDaJN0i5L8fOUe8H1mHK9pf6KsyPiUMMdxApPWlk/PEb6621WvZeH8HKDXFGjHgTXEyHNQlk8EDqBCYdn/CYHtmtQHWSDA1cmH/41YF+HjumJEAupcHfR7kzYmTqiiAIKlqlc0ude/+G79rg/lyAnSKw78US9k/5EJyk8F8G70W7BrwVgOxggAhKl5uHiDZh6Dp9/0oYLOnS7neawe5JXIdJVCubD331E4EGwa8cbEO2dm1mKq+ai929KeHD7ZnizLTxxDQqcUa/thS2f+gvELtjrBqGBqdJLEKhTNVgQ3cBcDcsXLEoVqMReF9nH4+kssIS4A/kdH/51lXMVGxIsnBHGVaT4aD1AzLkx+oUlhxiVS2pC36g4wKmpb3e1D72fKK8px1I5q2iEkoItedC4CFoUXtKaw9n14Ye5FO/82S31MhAXtKcU75d155nEOiwYsNkOQP6l8hIzQjjmo0YnDPB4wkUhX0SB+gvD7IN7ScPCNZdVHp83CVfc0yMqfw8dysGi6U//etDQ5LhSGRWk5yULpwclGXBrgdgBw/ZzKiwZ/I6TL+bA1y82YrMOwE3vh0dvQ7FTLR7ItADUNgJ7rbysf3XLNEjXkFVCUjbloDFfYXtsZQWd71DOLD6DFGhiTNCwjh5WH05J+NihqmOcGLEnp0jE5LdbwAOF2UrlSkDJEZttFCgjp7k9uw0kPCDA4Yi6sYZtVJuZsLMQpdsA+tUE5B81/Wb1nf07iQUQ9xCJoYvKsA5gSjeNrUc4s8tzRkX3WN7aPgMDkZ4tbrjE/6MTKdOlc3dSzYRgKC6I8o/slSj5m9AGBzOaucAvgwfNgc0qG/ICIl4yhh6XrzNJhjBmp2lLBnZWlbUlnXLftwVEWrgvDPNxUrFU1Oh1L/ypI8XDziYAkvRrpI5yEnFIJ+2ro58Cy0t1j7rRs831HDQl/2MN5Be/P8gAskL8doxVQAAAABJRU5ErkJggg%3D%3D);
+}
+
+tweet:not(:first-child) {
+	border-top: 1px solid rgba(255,255,255,0.8);
+}
+
+tweetOverlay {
+	position: absolute;
+	width: 102%;
+	height: 100%;
+	left: -1%;
+	top: 0px;
+	z-index: 10;
+	box-shadow: inset 0px 5px 10px rgba(0,0,0,0.5);
+	background-image: -o-linear-gradient(-90deg,
+																		rgba(0,0,0,0),
+																		rgba(0,0,0,0.15));
+}
+
+icon {
+	width: 48px;
+	height: 48px;
+	display: block;
+	position: absolute;
+	border-radius: 4px;
+	background-clip: padding-box;
+	left: 1px;
+	top: 1px;
+	box-shadow: inset 1px 1px 8px rgba(0,0,0,0.5);
+	border: 1px solid rgba(255,255,255,0.75);
+}
+
+tweetContent {
+	padding-left: 56px;
+	padding-top: 6px;
+	margin-top: 1px;
+	padding-right: 2px;
+	font-size: 12px;
+	text-shadow: white 0px 1px 0px;
+	height: 42px;
+	display: block;
+	overflow: hidden;
+	line-height: 14px;
+}
+
+feedOverlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	left: 0px;
+	top: 0px;
+	z-index: 15;
+	background-image: -o-linear-gradient(90deg,
+		rgba(255,255,255,1.0) 0%,
+		rgba(255,255,255,0.0) 40%);
+	box-shadow: inset 0px -10px 75px rgba(0,0,0,0.5);
+}
+
+name {
+	font-weight: bold;
+}

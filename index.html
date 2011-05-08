@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/style.css">
+    <title>Clock Speed Dial Extension</title>
+  </head>
+  <body>
+    <script id='tweetTmpl' type='text/html'>
+      <tweet>
+        <tweetOverlay></tweetOverlay>
+        <icon style='background-image:url(:icon)'></icon>
+        <tweetContent>
+          <name>:name</name>
+          <text>:text</text>
+        </tweetContent>
+      </tweet>
+    </script>
+    <feedOverlay></feedOverlay>
+    <output></output>
+    <script src="vendor/jsOAuth-1.1.min.js"></script>
+    <script src="js/background.js"></script>
+  </body>
+</html>

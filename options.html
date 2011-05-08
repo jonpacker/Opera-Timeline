@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/options.css" type="text/css">
+<script type="text/javascript" src="vendor/jsOAuth-1.1.min.js"></script>
+<script type="text/javascript" src="vendor/querystring.js"></script>
+<script type="text/javascript" src="vendor/knockout-1.2.0.js"></script>
+<script type="text/javascript" src="js/options.js"></script>
+
+<title id="widget-title">Timeline Preferences</title>
+
+<header>
+  <h1 id="widget-name">Timeline</h1>
+</header>
+
+<section>
+  <fieldset>
+    <legend>Twitter Login</legend>
+    <status data-bind="css: { 'ok': authd() }, text: (authd() ? 'connected' : 'not connected')"></status>
+    <p>
+      <div id="login" data-bind="css: { hide: authd() }">
+        <button id='twitterRequestAccessKey' class='bigButton' title='Request Twitter Access Pin'>
+          Request Twitter Access Pin
+        </button>
+        <div id='inputAccessKey'>
+          <input id='twitterAccessKey' type='text' />
+          <button id='twitterSaveAccessKey' title='Save Pin'>Save Pin</button>
+        </div>
+      </div>
+      <div id="logout" data-bind="css: { hide: !authd() }">
+        <button id='unsaveUser' class='bigButton' title='Disconnect'>
+          Disconnect
+        </button>
+      </div>
+    </p>
+  </fieldset>
+  <fieldset>
+    <legend>Settings</legend>
+    <status></status>
+    <p>
+      <label for='updateInterval'>Update Every...</label>
+      <input id='updateInterval' name='updateInterval' type='range' min='1' max='60' data-bind='value: updateInterval'>
+      <span data-bind="text: updateInterval() + ' seconds'"></span>
+    </p>
+  </fieldset>
+</section>
