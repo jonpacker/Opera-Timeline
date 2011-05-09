@@ -11,8 +11,6 @@ window.addEventListener('DOMContentLoaded', function() {
 		opera.contexts.speeddial.url = '/options.html';
 	}
 
-	opera.contexts.speeddial.url = 'http://www.twitter.com';
-
 	// no access
 	if (store.accessToken == 'none') {
 		notAuthd();
@@ -42,6 +40,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	
 	function requestTimelineUpdate() {
 		if (store.accessToken != 'none') {
+			opera.contexts.speeddial.url = 'http://www.twitter.com';
 			oauth.setAccessToken(store.accessToken.split('|'));
 			oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
 				updateTimeline, handleTimelineUpdateFailure);
