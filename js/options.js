@@ -67,7 +67,7 @@ var loadTimelineOptions = function(undefined) {
 	});
 
 	vm.authd = ko.dependentObservable(function() {
-		return this.accessToken() != 'none';
+		return this.accessToken() != 'none' && !!this.accessToken();
 	}, vm);
 
 	vm.accessTokenSet = ko.dependentObservable({
