@@ -19,7 +19,12 @@ window.addEventListener('DOMContentLoaded', function() {
 	var tweetTemplate = document.getElementById('tweetTmpl').innerHTML;
 	
 	function currentTopTweetText() {
-		return document.querySelector('text').textContent;
+		var topTweetText = document.querySelector('text');
+		if (!topTweetText) {
+			return '';
+		} else {
+			return topTweetText.textContent;
+		}
 	}
 
 	function assembleTweet(data) {
@@ -31,7 +36,12 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function updateTimeline(data) {
-		if (data.text == currentTopTweetText()) {
+		document.body.textContent += 'Got to update timeline...';
+		if (!data.length || data.length < 1) {
+			return;
+		}
+
+		if (data[0].text == currentTopTweetText()) {
 			return; //nothing new, bail here.
 		}
 
@@ -43,11 +53,10 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function handleTimelineUpdateFailure(data) {
-		//do nothing ...for now
 	}
 	
 	function requestTimelineUpdate() {
-		if (store.accessToken != 'none' || !store.accessToken) {
+		if (store.accessToken != 'none' && !!store.accessToken) {
 			opera.contexts.speeddial.url = 'http://www.twitter.com';
 			oauth.setAccessToken(store.accessToken.split('|'));
 			oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
