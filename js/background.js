@@ -12,7 +12,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 
 	// no access
-	if (store.accessToken == 'none') {
+	if (store.accessToken == 'none' || !store.accessToken) {
 		notAuthd();
 	}
 	
@@ -39,7 +39,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function requestTimelineUpdate() {
-		if (store.accessToken != 'none') {
+		if (store.accessToken != 'none' || !store.accessToken) {
 			opera.contexts.speeddial.url = 'http://www.twitter.com';
 			oauth.setAccessToken(store.accessToken.split('|'));
 			oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
