@@ -18,6 +18,10 @@ window.addEventListener('DOMContentLoaded', function() {
 	
 	var tweetTemplate = document.getElementById('tweetTmpl').innerHTML;
 	
+	function currentTopTweetText() {
+		return document.querySelector('text').textContent;
+	}
+
 	function assembleTweet(data) {
 		var tweet = tweetTemplate + '';
 		tweet = tweet.replace(/:name/, data.user.screen_name);
@@ -27,6 +31,10 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function updateTimeline(data) {
+		if (data.text == currentTopTweetText()) {
+			return; //nothing new, bail here.
+		}
+
 		var htmlBuffer = '';
 		for (var i = 0; i < data.length || i < 12; ++i) {
 			htmlBuffer += assembleTweet(data[i]);
