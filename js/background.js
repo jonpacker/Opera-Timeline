@@ -1,5 +1,20 @@
+window._log = (function() {
+  allLogs = [];
+
+  function addLog() {
+    var args = Array.prototype.slice.apply(arguments);
+    allLogs.push(args);
+  }
+
+  addLog.getLogs = function() {
+    return allLogs;
+  }
+
+  return addLog;
+})()
+
 window.addEventListener('DOMContentLoaded', function() {
-	var output = document.querySelector('output');
+	var output = document.querySelector('.output');
 	var store = widget.preferences;
 	var oauth = OAuth({
 		consumerKey: 'QrFCcnmv125hev0GM7UflQ',
@@ -19,7 +34,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	var tweetTemplate = document.getElementById('tweetTmpl').innerHTML;
 	
 	function currentTopTweetText() {
-		var topTweetText = document.querySelector('text');
+		var topTweetText = document.querySelector('.text');
 		if (!topTweetText) {
 			return '';
 		} else {
@@ -36,7 +51,6 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function updateTimeline(data) {
-		document.body.textContent += 'Got to update timeline...';
 		if (!data.length || data.length < 1) {
 			return;
 		}

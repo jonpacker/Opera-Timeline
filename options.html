@@ -16,6 +16,18 @@
 
 <section>
   <fieldset>
+    <legend>Timeline Type</legend>
+    <status></status>
+    <p>
+      <b>Select the type of timeline you would like to display.</b><br/>
+        <span style='text-align:left;display:block'>
+          <input name="type" type="radio" value="personal" data-bind="checked: timelineType" /><b>Personal Timeline</b> - Your personal twitter timeline (requires login)</input><br/>
+          <input name="type" type="radio" value="user" data-bind="checked: timelineType" /><b>User Timeline</b> - Timeline following a specific user</input><br/>
+          <input name="type" type="radio" value="list" data-bind="checked: timelineType" /><b>List Timeline</b> - Timeline following a specific list</input><br/>
+        </span>
+    </p>
+  </fieldset>
+  <fieldset class='toggleable' id='personalFieldset'>
     <legend>Twitter Login</legend>
     <status data-bind="css: { 'ok': authd() }, text: (authd() ? 'connected' : 'not connected')"></status>
     <p>
@@ -33,6 +45,21 @@
           Disconnect
         </button>
       </div>
+    </p>
+  </fieldset>
+  <fieldset class='toggleable' id='userFieldset'>
+    <legend>User Timeline Setup</legend>
+    <status></status>
+    <p>
+      <label for='userValue'>Twitter User to Display</label><input type='text' name='userValue' data-bind='value: userValue'/>
+    </p>
+  </fieldset>
+  <fieldset class='toggleable' id='listFieldset'>
+    <legend>List Timeline Setup</legend>
+    <status></status>
+    <p>
+      <label for='curator'>List Curator</label><input type='text' name='curator' data-bind='value: curator'/><br/>
+      <label for='listName'>List Name</label><input type='text' name='listName' data-bind='value: listName'/><br/>
     </p>
   </fieldset>
   <fieldset>

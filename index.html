@@ -5,21 +5,22 @@
     <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/style.css">
-    <title>Clock Speed Dial Extension</title>
+    <!-- Thanks Andreas! -->
+    <title>Timeline</title>
   </head>
   <body>
     <script id='tweetTmpl' type='text/html'>
-      <tweet>
-        <tweetOverlay></tweetOverlay>
-        <icon><img src=':icon' /></icon>
-        <tweetContent>
-          <name>:name</name>
-          <text>:text</text>
-        </tweetContent>
-      </tweet>
+      <div class='tweet'>
+        <div class='tweetOverlay'></div>
+        <div class='icon'><img src=':icon' /></div>
+        <div class='tweetContent'>
+          <div class='name'>:name</div>
+          <div class='text'>:text</div>
+        </div>
+      </div>
     </script>
-    <feedOverlay></feedOverlay>
-    <output></output>
+    <div class='feedOverlay'></div>
+    <div class='output'></div>
     <script src="vendor/jsOAuth-1.1.min.js"></script>
     <script src="js/background.js"></script>
   </body>

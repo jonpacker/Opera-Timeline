@@ -15,6 +15,7 @@ var loadTimelineOptions = function(undefined) {
 		
 		oauth.fetchRequestToken(function(url) {
 			var popupSpecs = 'width=800,height=600,resizable=no'
+			console.log(url);
 			var windowObjectReference = window.open(url, 'Authorise', popupSpecs);
 		}, function(data) {
 			console.log(data);
@@ -41,6 +42,18 @@ var loadTimelineOptions = function(undefined) {
 	var forgetUser = function(e) {
 		vm.accessToken('none');
 	}
+
+	var switchTimelineType = function(newValue) {
+		var fieldset = '#' + newValue + 'Fieldset';
+		var fieldsets = document.querySelectorAll('.toggleable');
+		
+		for (var i = 0; i < fieldsets.length; ++i) {
+			fieldsets[i].style['display'] = 'none';
+		}
+
+		var visibleFieldset = document.querySelector(fieldset);
+		visibleFieldset.style['display'] = 'block';
+	}
 	
 	var handleKeyReq = showTwitterAccessRequest;
 	
@@ -55,7 +68,12 @@ var loadTimelineOptions = function(undefined) {
 	vm = {
 		widget: widget,
 		accessToken: ko.observable(store.accessToken),
-		updateInterval: ko.observable(store.updateInterval || '15')
+		updateInterval: ko.observable(store.updateInterval || '15'),
+		timelineType: ko.observable(store.timelineType || 'personal'),
+		querystring: ko.observable(store.querystring || ''),
+		userValue: '',
+		listName: '',
+		curator: ''
 	}
 
 	vm.updateInterval.subscribe(function(newValue) {
@@ -64,6 +82,16 @@ var loadTimelineOptions = function(undefined) {
 
 	vm.accessToken.subscribe(function(newValue) {
 		store.accessToken = newValue;
+	});
+
+	vm.timelineType.subscribe(function(newValue) {
+		store.timelineType = newValue;
+	});
+
+	vm.timelineType.subscribe(switchTimelineType);
+
+	vm.querystring.subscribe(function(newValue) {
+		store.querystring = newValue;
 	});
 
 	vm.authd = ko.dependentObservable(function() {
