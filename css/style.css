@@ -2,13 +2,13 @@ html, body {
 	padding: 0px;
 	margin: 0px;
 	border-radius: 4px;
-	font-family: Cabin;
+	font-family: Corbel, Cabin, sans-serif;
 }
 
 .error {
 	color: red;
 	padding: 0.5em 0.65em;
-	font-family: Rokkitt;
+	font-family: Montserrat;
 	font-weight:bold;
 	line-height: 0.9em;
 	margin-top: 0px;
@@ -36,7 +36,7 @@ html, body {
 }
 
 .tweet:not(:first-child) {
-	border-top: 1px solid rgba(255,255,255,0.8);
+	border-top: 1px solid rgba(0,0,0,0.1);
 }
 
 .tweetOverlay {
@@ -67,10 +67,10 @@ html, body {
 }
 
 .tweetContent {
-	padding-left: 56px;
-	padding-top: 6px;
+	padding-left: 60px;
+	padding-top: 4px;
 	margin-top: 1px;
-	padding-right: 2px;
+	padding-right: 4px;
 	font-size: 12px;
 	text-shadow: white 0px 1px 0px;
 	height: 42px;
@@ -90,5 +90,5 @@ html, body {
 }
 
 .name {
-	font-weight: bold;
+  font-family: Montserrat;
 }
