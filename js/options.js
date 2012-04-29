@@ -71,22 +71,23 @@ var loadTimelineOptions = function(undefined) {
 		updateInterval: ko.observable(store.updateInterval || '15'),
 		timelineType: ko.observable(store.timelineType || 'personal'),
 		querystring: ko.observable(store.querystring || ''),
-		userValue: '',
-		listName: '',
-		curator: ''
+		userValue: ko.observable(store.userValue),
+		listName: ko.observable(store.listName),
+		curator: ko.observable(store.curator)
 	}
 
-	vm.updateInterval.subscribe(function(newValue) {
-		store.updateInterval = newValue;
-	});
+  var bindOption = function(key) {
+    vm[key].subscribe(function(val) {
+      store[key] = val;
+    });
+  };
 
-	vm.accessToken.subscribe(function(newValue) {
-		store.accessToken = newValue;
-	});
-
-	vm.timelineType.subscribe(function(newValue) {
-		store.timelineType = newValue;
-	});
+  ['updateInterval',
+   'accessToken',
+   'timelineType',
+   'userValue',
+   'listName',
+   'curator'].forEach(bindOption);
 
 	vm.timelineType.subscribe(switchTimelineType);
 
@@ -112,6 +113,7 @@ var loadTimelineOptions = function(undefined) {
 		owner: vm
 	});
 	ko.applyBindings(vm);
+  switchTimelineType(vm.timelineType())
 };
 
 window.addEventListener('DOMContentLoaded', function() {

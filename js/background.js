@@ -68,9 +68,30 @@ window.addEventListener('DOMContentLoaded', function() {
 	
 	function handleTimelineUpdateFailure(data) {
 	}
+
+  function requestJSON(url, complete, failure) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.send();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status != 200) {
+          failure();
+        } else {
+          complete(JSON.parse(xhr.responseText));
+        }
+      }
+    }
+  }
 	
 	function requestTimelineUpdate() {
-		if (store.accessToken != 'none' && !!store.accessToken) {
+    if (store.timelineType === 'user') {
+      var url = 'http://twitter.com/statuses/user_timeline/' + store.userValue + '.json';
+      requestJSON(url, updateTimeline, handleTimelineUpdateFailure);
+    } else if (store.timelineType === 'list') {
+      var url = 'http://api.twitter.com/1/lists/statuses.json?slug=' + store.listName + '&owner_screen_name=' + store.curator;
+      requestJSON(url, updateTimeline, handleTimelineUpdateFailure);
+    } else if (store.accessToken != 'none' && !!store.accessToken) {
 			opera.contexts.speeddial.url = 'http://www.twitter.com';
 			oauth.setAccessToken(store.accessToken.split('|'));
 			oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
