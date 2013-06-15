@@ -16,6 +16,7 @@ window._log = (function() {
 window.addEventListener('DOMContentLoaded', function() {
 	var output = document.querySelector('.output');
 	var store = widget.preferences;
+  var rep; //variable to set the repeat interval
 	var oauth = OAuth({
 		consumerKey: 'QrFCcnmv125hev0GM7UflQ',
 		consumerSecret: 'l4FYd16ipfInGVIypcvX9x8YePXEYG7QzgWN558p0Q8'
@@ -67,6 +68,7 @@ window.addEventListener('DOMContentLoaded', function() {
 	}
 	
 	function handleTimelineUpdateFailure(data) {
+    console.log('Error: '+data);
 	}
 
   function requestJSON(url, complete, failure) {
@@ -85,27 +87,36 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 	
 	function requestTimelineUpdate() {
+    var authd = true;
     if (store.timelineType === 'user') {
-      var url = 'http://twitter.com/statuses/user_timeline/' + store.userValue + '.json';
+      //var url = 'http://twitter.com/statuses/user_timeline/' + store.userValue + '.json';
+      var url = 'https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name='+store.userValue+'&count=12';
       requestJSON(url, updateTimeline, handleTimelineUpdateFailure);
     } else if (store.timelineType === 'list') {
-      var url = 'http://api.twitter.com/1/lists/statuses.json?slug=' + store.listName + '&owner_screen_name=' + store.curator;
+      //var url = 'http://api.twitter.com/1/lists/statuses.json?slug=' + store.listName + '&owner_screen_name=' + store.curator;
+      var url = 'https://api.twitter.com/1.1/lists/statuses.json?slug='+store.listName+'&owner_screen_name='+store.curator+'&count=12';
       requestJSON(url, updateTimeline, handleTimelineUpdateFailure);
     } else if (store.accessToken != 'none' && !!store.accessToken) {
-			opera.contexts.speeddial.url = 'http://www.twitter.com';
+      //opera.contexts.speeddial.url = 'http://www.twitter.com';
+      opera.contexts.speeddial.url = 'https://www.twitter.com';
 			oauth.setAccessToken(store.accessToken.split('|'));
-			oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
+			//oauth.getJSON('http://api.twitter.com/1/statuses/home_timeline.json',
+      oauth.getJSON('https://api.twitter.com/1.1/statuses/home_timeline.json',
 				updateTimeline, handleTimelineUpdateFailure);
 		} else {
+      authd = false;
 			notAuthd();
-		}
+  	}
+    //this is needed because if you change the interval in the options page
+    //the interval needs to be reset and before it didn't
+    rep = window.clearInterval(rep); //clear the interval
+    rep = window.setInterval(function() { //set the new interval
+      requestTimelineUpdate();
+    //if not authenticated call it every 10 seconds
+    //else every time indicated by the parameter
+    }, (authd ? store.updateInterval* 60000 : 10000));
 	}
-	
+
 	requestTimelineUpdate();
-	
-	//now lets update it every 10 secs.
-	window.setInterval(function() {
-		requestTimelineUpdate();
-	}, store.updateInterval * 1000);
-	
+
 }, false);

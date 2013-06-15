@@ -23,13 +23,14 @@ var loadTimelineOptions = function(undefined) {
 	};
 	
 	var saveTwitterAccessToken = function(pin) {
-		oauth.get(oauthOpts.accessTokenUrl + '?oauth_verifier=' + pin, 
+		if (!pin) pin = document.getElementById('twitterAccessKey').value;
+		oauth.get(oauthOpts.accessTokenUrl + '?oauth_verifier=' + pin,
 		function(data) {
 			var response = QueryString.parse(data.text);
 			vm.accessTokenSet([response.oauth_token, response.oauth_token_secret]);
 		}, 
 		function(data) {
-			// TODO - handle unsuccessful auth
+			console.log(data);
 		});
 	}
 	
@@ -68,7 +69,7 @@ var loadTimelineOptions = function(undefined) {
 	vm = {
 		widget: widget,
 		accessToken: ko.observable(store.accessToken),
-		updateInterval: ko.observable(store.updateInterval || '15'),
+		updateInterval: ko.observable(store.updateInterval || '1'),
 		timelineType: ko.observable(store.timelineType || 'personal'),
 		querystring: ko.observable(store.querystring || ''),
 		userValue: ko.observable(store.userValue),

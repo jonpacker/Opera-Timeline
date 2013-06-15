@@ -3,9 +3,9 @@
 <link href='http://fonts.googleapis.com/css?family=Rokkitt' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="css/options.css" type="text/css">
-<script type="text/javascript" src="vendor/jsOAuth-1.1.min.js"></script>
+<script type="text/javascript" src="vendor/jsOAuth-1.3.6.min.js"></script>
 <script type="text/javascript" src="vendor/querystring.js"></script>
-<script type="text/javascript" src="vendor/knockout-1.2.0.js"></script>
+<script type="text/javascript" src="vendor/knockout-2.2.1.js"></script>
 <script type="text/javascript" src="js/options.js"></script>
 
 <title id="widget-title">Timeline Preferences</title>
@@ -67,8 +67,8 @@
     <status></status>
     <p>
       <label for='updateInterval'>Update Every...</label>
-      <input id='updateInterval' name='updateInterval' type='range' min='15' max='60' data-bind='value: updateInterval'>
-      <span data-bind="text: updateInterval() + ' seconds'"></span>
+      <input id='updateInterval' name='updateInterval' type='range' min='1' max='10' data-bind='value: updateInterval'>
+      <span data-bind="text: updateInterval() + ' minutes'"></span>
     </p>
   </fieldset>
 </section>

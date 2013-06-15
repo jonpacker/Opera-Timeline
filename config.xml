@@ -5,7 +5,7 @@
 	<author href="http://www.jonpacker.com" email="contact@jonpacker.com">Jon Packer</author>
 	<icon src="images/icon.png"/>
 	<preference name="accessToken" value="none"/>
-  <preference name="updateInterval" value="15"/>
+  <preference name="updateInterval" value="1"/>
   <preference name="timelineType" value="personal"/>
   <preference name="querystring" value=""/>
 	<access origin="*" />
